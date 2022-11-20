@@ -36,10 +36,12 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
 
     // One Player Panel
     Panel oneplay = new Panel();
+    Label title = new Label("Tic Tac Toe");
     Button back3 = new Button("Back");
 
     // Two Player Panel
     Panel twoplay = new Panel();
+    Label nam = new Label("Tic Tac Toe");
     Button back4 = new Button("Back");
 
     // Card Layout Container
@@ -61,9 +63,9 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
             cardLayout.show(card, "Players Screen");
         } else if (a.getSource() == back4) {
             cardLayout.show(card, "Players Screen");
-        }else if (a.getSource() == onePlay) {
+        } else if (a.getSource() == onePlay) {
             cardLayout.show(card, "One Player Screen");
-        }else if (a.getSource() == twoPlay) {
+        } else if (a.getSource() == twoPlay) {
             cardLayout.show(card, "Two Players Screen");
         }
 
@@ -78,6 +80,25 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
         setVisible(true);
         setSize(600, 600);
         add(welcomPanel);// adding home panel
+
+        // Canvas Class for the tic tac toe square
+        class MyCanvas extends Canvas {
+            MyCanvas() {
+                setBackground(Color.decode("#E9FFDB"));
+                repaint();
+            }
+
+            public void paint(Graphics g) {
+                super.paint(g);
+                Graphics2D g2d = (Graphics2D) g;
+                g2d.setStroke(new BasicStroke(4.0F));
+                g2d.setColor(Color.DARK_GRAY);
+                g.drawLine(115, 10, 115, 340);
+                g.drawLine(240, 10, 240, 340);
+                g.drawLine(10, 115, 340, 115);
+                g.drawLine(10, 235, 340, 235);
+            }
+        }
 
         // Home Screen
         welcomPanel.setBackground(Color.ORANGE);
@@ -106,7 +127,7 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
         home.setLayout(null);
         home.setBackground(Color.ORANGE);
         Name.setBounds(180, 20, 250, 50);
-        Font k = new Font("Comic Sans MS", Font.BOLD, 35);
+        Font k = new Font("Comic Sans MS", Font.BOLD, 30);
         Name.setFont(k);
         Name.setForeground(Color.BLUE);
         onePlay.setBounds(180, 150, 200, 60);
@@ -140,20 +161,36 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
         Mess.add(confirm);
 
         // One Player Screen
-        oneplay.setLayout(new FlowLayout());
+        oneplay.setLayout(null);
+        back3.setBounds(20, 20, 50, 30);
         oneplay.add(back3);
+        title.setBounds(180, 20, 250, 30);
+        title.setFont(k);
+        title.setForeground(Color.BLUE);
+        oneplay.add(title);
         oneplay.setBackground(Color.ORANGE);
+        MyCanvas c1 = new MyCanvas();
+        c1.setBounds(100, 150, 350, 350);
+        oneplay.add(c1);
 
         // Two Player Screen
-        twoplay.setLayout(new FlowLayout());
+        twoplay.setLayout(null);
+        back4.setBounds(20, 20, 50, 30);
         twoplay.add(back4);
+        nam.setBounds(180, 20, 250, 30);
+        nam.setFont(k);
+        nam.setForeground(Color.BLUE);
+        twoplay.add(nam);
         twoplay.setBackground(Color.ORANGE);
+        MyCanvas c2 = new MyCanvas();
+        c2.setBounds(100, 150, 350, 350);
+        twoplay.add(c2);
 
         // Adding Cards to the deck
         card.add("Welcome Screen", welcomPanel);
         card.add("Players Screen", home);
-        card.add("One Player Screen",oneplay);
-        card.add("Two Players Screen",twoplay);
+        card.add("One Player Screen", oneplay);
+        card.add("Two Players Screen", twoplay);
 
         // Adding listeners to the buttons
         play.addActionListener(this);

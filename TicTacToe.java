@@ -5,17 +5,19 @@ import javax.swing.*;
 public class TicTacToe extends JFrame implements ActionListener {
     CardLayout cardLayout = new CardLayout(20, 20);
     Font f = new Font("Comic Sans MS", Font.BOLD, 20);
+
     // Welcome screen
     Panel welcomPanel = new Panel();
     Label wel = new Label(" Welcome to Tic Tac Toe!! ");
     Button play = new Button("Play");
     Button exit = new Button("Exit");
-    Panel pic=new Panel();
-    JLabel imagelabel=new JLabel();
-    // Selection screen which contains Grid Layout
+    JLabel imagelabel = new JLabel();
+
+    // Selection screen
     Panel home = new Panel();
     Label Name = new Label("Tic Tac Toe");
     Button onePlay = new Button("One Player");
+    Button twoPlay = new Button("Two Players");
     Button back2 = new Button("Back");
 
     // Message Panel
@@ -29,8 +31,8 @@ public class TicTacToe extends JFrame implements ActionListener {
     Label D = new Label("D:");
     Label O = new Label("O:");
 
-    // Card Layout panel
-    JPanel card = new JPanel();
+    // Card Layout Container
+    Container card = getContentPane();
 
     public void actionPerformed(ActionEvent a) {
         if (a.getSource() == play) {
@@ -49,22 +51,33 @@ public class TicTacToe extends JFrame implements ActionListener {
 
     TicTacToe() {
         setVisible(true);
-        setSize(800, 800);
-        add(welcomPanel);
+        setSize(600, 600);
+        add(welcomPanel);// adding home panel
+
+        // Home Screen
         welcomPanel.setBackground(Color.ORANGE);
         welcomPanel.setLayout(null);
-        wel.setBounds(250, 10, 250, 50);
+        wel.setBounds(150, 10, 250, 50);
         wel.setFont(f);
-        setForeground(Color.BLUE);
+        wel.setForeground(Color.BLUE);
         welcomPanel.add(wel);
-        imagelabel.setBounds(80, 90, 628, 611);
+        imagelabel.setBounds(110, 90, 320, 320);
         imagelabel.setIcon(new ImageIcon("D:\\Documents\\DDU\\DDU Sem 3\\JAVA\\TicTacToe\\tictactoe.jpg"));
-        // pic.add(imagelabel);
         welcomPanel.add(imagelabel);
-        // setting card layout
-        card.setLayout(cardLayout);
+        play.setBounds(120, 450, 100, 50);
+        exit.setBounds(320, 450, 100, 50);
+        play.setBackground(Color.MAGENTA);
+        exit.setBackground(Color.MAGENTA);
+        play.setFont(f);
+        exit.setFont(f);
+        welcomPanel.add(play);
+        welcomPanel.add(exit);
 
-        // players screen
+        // setting card layout in Container
+        card.setLayout(cardLayout);
+        card.setBackground(Color.BLACK);
+
+        // Players screen
         home.setLayout(new FlowLayout());
         home.setBackground(Color.CYAN);
         home.add(Name);
@@ -81,10 +94,6 @@ public class TicTacToe extends JFrame implements ActionListener {
         card.add("Welcome Screen", welcomPanel);
         card.add("Players Screen", home);
         card.add("Message Screen", Mess);
-
-        // Adding Card to Frame
-        add(card);
-        card.setBackground(Color.lightGray);
 
         // Adding listeners to the buttons
         play.addActionListener(this);

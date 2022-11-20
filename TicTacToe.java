@@ -29,20 +29,21 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
     Button confirm = new Button("Confirm");
     Button back1 = new Button("Back");
 
-    // Common Label for the game
-    Label X = new Label("X:");
-    Label D = new Label("D:");
-    Label O = new Label("O:");
-
     // One Player Panel
     Panel oneplay = new Panel();
     Label title = new Label("Tic Tac Toe");
     Button back3 = new Button("Back");
+    Label X = new Label("X:");
+    Label D = new Label("D:");
+    Label O = new Label("O:");
 
     // Two Player Panel
     Panel twoplay = new Panel();
     Label nam = new Label("Tic Tac Toe");
     Button back4 = new Button("Back");
+    Label x = new Label("X:");
+    Label dd = new Label("D:");
+    Label o = new Label("O:");
 
     // Card Layout Container
     Container card = getContentPane();
@@ -71,11 +72,21 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
 
     }
 
-    public void mouseReleased(MouseEvent m) {}
-    public void mouseClicked(MouseEvent m) {}
-    public void mouseEntered(MouseEvent m) {}
-    public void mouseExited(MouseEvent m) {}
-    public void mousePressed(MouseEvent m) {}
+    public void mouseReleased(MouseEvent m) {
+    }
+
+    public void mouseClicked(MouseEvent m) {
+    }
+
+    public void mouseEntered(MouseEvent m) {
+    }
+
+    public void mouseExited(MouseEvent m) {
+    }
+
+    public void mousePressed(MouseEvent m) {
+    }
+
     TicTacToe() {
         setVisible(true);
         setSize(600, 600);

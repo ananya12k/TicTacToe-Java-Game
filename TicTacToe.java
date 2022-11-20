@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class TicTacToe extends JFrame implements ActionListener {
     CardLayout cardLayout = new CardLayout(20, 20);
-    Font f = new Font("Comic Sans MS", Font.BOLD, 20);
+    Font f = new Font("Comic Sans MS", Font.BOLD, 18);
 
     // Welcome screen
     Panel welcomPanel = new Panel();
@@ -21,6 +21,7 @@ public class TicTacToe extends JFrame implements ActionListener {
     Button back2 = new Button("Back");
 
     // Message Panel
+    Dialog d=new Dialog(this,"Exit Dialog Box",true);
     JPanel Mess = new JPanel();
     Label messLabel = new Label();
     Button confirm = new Button("Confirm");
@@ -38,9 +39,10 @@ public class TicTacToe extends JFrame implements ActionListener {
         if (a.getSource() == play) {
             cardLayout.show(card, "Players Screen");
         } else if (a.getSource() == exit) {
-            cardLayout.show(card, "Message Screen");
+            d.setVisible(true);
         } else if (a.getSource() == back1) {
             cardLayout.show(card, "Welcome Screen");
+            d.dispose();
         } else if (a.getSource() == back2) {
             cardLayout.show(card, "Welcome Screen");
         } else if (a.getSource() == confirm) {
@@ -79,21 +81,32 @@ public class TicTacToe extends JFrame implements ActionListener {
 
         // Players screen
         home.setLayout(new FlowLayout());
-        home.setBackground(Color.CYAN);
+        home.setBackground(Color.ORANGE);
         home.add(Name);
         home.add(onePlay);
         home.add(back2);
 
         // Message screen
+        d.setSize(200,150);
+        // d.setLayout(new FlowLayout());
+        d.setVisible(false);
+        d.add(Mess);
         Mess.setLayout(new FlowLayout(FlowLayout.CENTER));
-        Mess.setBackground(Color.RED);
+        Mess.setBackground(Color.ORANGE);
+        back1.setBounds(80, 90, 90, 50);
+        confirm.setBounds(130, 90, 90, 50);
+        back1.setBackground(Color.MAGENTA);
+        confirm.setBackground(Color.MAGENTA);
+        Font l = new Font("Comic Sans MS", Font.BOLD, 15);
+        back1.setFont(l);
+        confirm.setFont(l);
         Mess.add(back1);
         Mess.add(confirm);
 
         // Adding Cards to the deck
         card.add("Welcome Screen", welcomPanel);
         card.add("Players Screen", home);
-        card.add("Message Screen", Mess);
+        // card.add("Message Screen", d);
 
         // Adding listeners to the buttons
         play.addActionListener(this);

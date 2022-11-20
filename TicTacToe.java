@@ -3,8 +3,11 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class TicTacToe extends JFrame implements ActionListener {
+    // CardLayout instance
     CardLayout cardLayout = new CardLayout(20, 20);
-    Font f = new Font("Comic Sans MS", Font.BOLD, 18);
+
+    // Setting font
+    Font f = new Font("Comic Sans MS", Font.BOLD, 20);
 
     // Welcome screen
     Panel welcomPanel = new Panel();
@@ -21,7 +24,7 @@ public class TicTacToe extends JFrame implements ActionListener {
     Button back2 = new Button("Back");
 
     // Message Panel
-    Dialog d=new Dialog(this,"Exit Dialog Box",true);
+    Dialog d = new Dialog(this, "Exit Dialog Box", true);
     JPanel Mess = new JPanel();
     Button confirm = new Button("Confirm");
     Button back1 = new Button("Back");
@@ -79,17 +82,31 @@ public class TicTacToe extends JFrame implements ActionListener {
         card.setBackground(Color.BLACK);
 
         // Players screen
-        home.setLayout(new FlowLayout());
+        home.setLayout(null);
         home.setBackground(Color.ORANGE);
+        Name.setBounds(180, 20, 250, 50);
+        Font k = new Font("Comic Sans MS", Font.BOLD, 35);
+        Name.setFont(k);
+        Name.setForeground(Color.BLUE);
+        onePlay.setBounds(180, 150, 200, 60);
+        twoPlay.setBounds(180, 250, 200, 60);
+        back2.setBounds(180, 350, 200, 60);
+        Font newf = new Font("Comic Sans MS", Font.BOLD, 25);
+        onePlay.setFont(newf);
+        twoPlay.setFont(newf);
+        back2.setFont(newf);
+        onePlay.setBackground(Color.MAGENTA);
+        twoPlay.setBackground(Color.MAGENTA);
+        back2.setBackground(Color.MAGENTA);
         home.add(Name);
         home.add(onePlay);
+        home.add(twoPlay);
         home.add(back2);
 
         // Message screen
-        d.setSize(200,150);
+        d.setSize(200, 200);
         d.setVisible(false);
         d.add(Mess);
-        Mess.setLayout(new FlowLayout(FlowLayout.CENTER));
         Mess.setBackground(Color.ORANGE);
         back1.setBounds(80, 90, 90, 50);
         confirm.setBounds(130, 90, 90, 50);

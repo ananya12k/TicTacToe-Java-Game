@@ -69,7 +69,6 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
         } else if (a.getSource() == twoPlay) {
             cardLayout.show(card, "Two Players Screen");
         }
-
     }
 
     public void mouseReleased(MouseEvent m) {
@@ -173,29 +172,58 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
 
         // One Player Screen
         oneplay.setLayout(null);
+        // back button
         back3.setBounds(20, 20, 50, 30);
         oneplay.add(back3);
+        // title
         title.setBounds(180, 20, 250, 30);
         title.setFont(k);
         title.setForeground(Color.BLUE);
         oneplay.add(title);
+        // panel background
         oneplay.setBackground(Color.ORANGE);
+        // Canvas
         MyCanvas c1 = new MyCanvas();
         c1.setBounds(100, 150, 350, 350);
         oneplay.add(c1);
+        // X,O,D Labels
+        X.setBounds(150,80,50,50);
+        O.setBounds(250,80,50,50);
+        D.setBounds(350,80,50,50);
+        Font labFont = new Font("Comic Sans MS", Font.BOLD, 20);
+        X.setFont(labFont);
+        D.setFont(labFont);
+        O.setFont(labFont);
+        oneplay.add(X);
+        oneplay.add(D);
+        oneplay.add(O);
 
         // Two Player Screen
         twoplay.setLayout(null);
+        // back button
         back4.setBounds(20, 20, 50, 30);
         twoplay.add(back4);
+        // title
         nam.setBounds(180, 20, 250, 30);
         nam.setFont(k);
         nam.setForeground(Color.BLUE);
         twoplay.add(nam);
+        // panel background
         twoplay.setBackground(Color.ORANGE);
+        // Canvas
         MyCanvas c2 = new MyCanvas();
         c2.setBounds(100, 150, 350, 350);
         twoplay.add(c2);
+        // X,O,D Labels
+        x.setBounds(150,80,50,50);
+        o.setBounds(250,80,50,50);
+        dd.setBounds(350,80,50,50);
+        x.setFont(labFont);
+        dd.setFont(labFont);
+        o.setFont(labFont);
+        twoplay.add(x);
+        twoplay.add(dd);
+        twoplay.add(o);
 
         // Adding Cards to the deck
         card.add("Welcome Screen", welcomPanel);

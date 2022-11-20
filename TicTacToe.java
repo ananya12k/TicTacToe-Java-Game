@@ -23,7 +23,6 @@ public class TicTacToe extends JFrame implements ActionListener {
     // Message Panel
     Dialog d=new Dialog(this,"Exit Dialog Box",true);
     JPanel Mess = new JPanel();
-    Label messLabel = new Label();
     Button confirm = new Button("Confirm");
     Button back1 = new Button("Back");
 
@@ -88,7 +87,6 @@ public class TicTacToe extends JFrame implements ActionListener {
 
         // Message screen
         d.setSize(200,150);
-        // d.setLayout(new FlowLayout());
         d.setVisible(false);
         d.add(Mess);
         Mess.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -106,7 +104,6 @@ public class TicTacToe extends JFrame implements ActionListener {
         // Adding Cards to the deck
         card.add("Welcome Screen", welcomPanel);
         card.add("Players Screen", home);
-        // card.add("Message Screen", d);
 
         // Adding listeners to the buttons
         play.addActionListener(this);

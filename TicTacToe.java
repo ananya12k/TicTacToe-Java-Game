@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class TicTacToe extends JFrame implements ActionListener {
+public class TicTacToe extends JFrame implements ActionListener, MouseListener {
     // CardLayout instance
     CardLayout cardLayout = new CardLayout(20, 20);
 
@@ -23,16 +23,24 @@ public class TicTacToe extends JFrame implements ActionListener {
     Button twoPlay = new Button("Two Players");
     Button back2 = new Button("Back");
 
-    // Message Panel
+    // Message Dialog
     Dialog d = new Dialog(this, "Exit Dialog Box", true);
     JPanel Mess = new JPanel();
     Button confirm = new Button("Confirm");
     Button back1 = new Button("Back");
 
-    // Game Panel
+    // Common Label for the game
     Label X = new Label("X:");
     Label D = new Label("D:");
     Label O = new Label("O:");
+
+    // One Player Panel
+    Panel oneplay = new Panel();
+    Button back3 = new Button("Back");
+
+    // Two Player Panel
+    Panel twoplay = new Panel();
+    Button back4 = new Button("Back");
 
     // Card Layout Container
     Container card = getContentPane();
@@ -49,10 +57,23 @@ public class TicTacToe extends JFrame implements ActionListener {
             cardLayout.show(card, "Welcome Screen");
         } else if (a.getSource() == confirm) {
             System.exit(1);
+        } else if (a.getSource() == back3) {
+            cardLayout.show(card, "Players Screen");
+        } else if (a.getSource() == back4) {
+            cardLayout.show(card, "Players Screen");
+        }else if (a.getSource() == onePlay) {
+            cardLayout.show(card, "One Player Screen");
+        }else if (a.getSource() == twoPlay) {
+            cardLayout.show(card, "Two Players Screen");
         }
 
     }
 
+    public void mouseReleased(MouseEvent m) {}
+    public void mouseClicked(MouseEvent m) {}
+    public void mouseEntered(MouseEvent m) {}
+    public void mouseExited(MouseEvent m) {}
+    public void mousePressed(MouseEvent m) {}
     TicTacToe() {
         setVisible(true);
         setSize(600, 600);
@@ -103,7 +124,7 @@ public class TicTacToe extends JFrame implements ActionListener {
         home.add(twoPlay);
         home.add(back2);
 
-        // Message screen
+        // Message dialog
         d.setSize(200, 200);
         d.setVisible(false);
         d.add(Mess);
@@ -118,17 +139,32 @@ public class TicTacToe extends JFrame implements ActionListener {
         Mess.add(back1);
         Mess.add(confirm);
 
+        // One Player Screen
+        oneplay.setLayout(new FlowLayout());
+        oneplay.add(back3);
+        oneplay.setBackground(Color.ORANGE);
+
+        // Two Player Screen
+        twoplay.setLayout(new FlowLayout());
+        twoplay.add(back4);
+        twoplay.setBackground(Color.ORANGE);
+
         // Adding Cards to the deck
         card.add("Welcome Screen", welcomPanel);
         card.add("Players Screen", home);
+        card.add("One Player Screen",oneplay);
+        card.add("Two Players Screen",twoplay);
 
         // Adding listeners to the buttons
         play.addActionListener(this);
         exit.addActionListener(this);
         onePlay.addActionListener(this);
+        twoPlay.addActionListener(this);
         confirm.addActionListener(this);
         back1.addActionListener(this);
         back2.addActionListener(this);
+        back3.addActionListener(this);
+        back4.addActionListener(this);
 
     }
 

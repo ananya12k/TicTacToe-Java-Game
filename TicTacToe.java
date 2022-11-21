@@ -36,6 +36,9 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
     Label X = new Label("X:");
     Label D = new Label("D:");
     Label O = new Label("O:");
+    Label Score = new Label("Scores");
+    Button nextRound = new Button("Next Round");
+    Button Exit = new Button("Exit");
 
     // Two Player Panel
     Panel twoplay = new Panel();
@@ -44,6 +47,16 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
     Label x = new Label("X:");
     Label dd = new Label("D:");
     Label o = new Label("O:");
+    Label score = new Label("Scores");
+    Button nextround = new Button("Next Round");
+    Button exitbutton = new Button("Exit");
+
+    // Exiting Dialog
+    Dialog exitdDialog = new Dialog(this, "Leave Game", true);
+    Panel nePanel = new Panel();
+    Label leave = new Label("Leave Game ??");
+    Button yes = new Button("Yes");
+    Button no = new Button("No");
 
     // Card Layout Container
     Container card = getContentPane();
@@ -68,6 +81,17 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
             cardLayout.show(card, "One Player Screen");
         } else if (a.getSource() == twoPlay) {
             cardLayout.show(card, "Two Players Screen");
+        } else if (a.getSource() == nextRound) {
+        } else if (a.getSource() == nextround) {
+        } else if (a.getSource() == exitbutton) {
+            exitdDialog.setVisible(true);
+        } else if (a.getSource() == Exit) {
+            exitdDialog.setVisible(true);
+        } else if (a.getSource() == yes) {
+            exitdDialog.dispose();
+            System.exit(1);
+        } else if (a.getSource() == no) {
+            exitdDialog.dispose();
         }
     }
 
@@ -88,7 +112,7 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
 
     TicTacToe() {
         setVisible(true);
-        setSize(600, 600);
+        setSize(600, 650);
         add(welcomPanel);// adding home panel
 
         // Canvas Class for the tic tac toe square
@@ -170,10 +194,30 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
         Mess.add(back1);
         Mess.add(confirm);
 
+        // Exiting Dialog
+        exitdDialog.setSize(300, 200);
+        exitdDialog.setVisible(false);
+        exitdDialog.add(nePanel);
+        nePanel.setBackground(Color.ORANGE);
+        nePanel.setLayout(null);
+        leave.setBounds(45, 30, 190, 40);
+        yes.setBounds(40, 110, 80, 40);
+        no.setBounds(160, 110, 80, 40);
+        leave.setFont(newf);
+        leave.setForeground(Color.BLUE);
+        yes.setFont(l);
+        no.setFont(l);
+        no.setBackground(Color.MAGENTA);
+        yes.setBackground(Color.MAGENTA);
+        nePanel.add(leave);
+        nePanel.add(yes);
+        nePanel.add(no);
+
         // One Player Screen
         oneplay.setLayout(null);
         // back button
         back3.setBounds(20, 20, 50, 30);
+        back3.setFont(l);
         oneplay.add(back3);
         // title
         title.setBounds(180, 20, 250, 30);
@@ -186,22 +230,35 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
         MyCanvas c1 = new MyCanvas();
         c1.setBounds(100, 150, 350, 350);
         oneplay.add(c1);
-        // X,O,D Labels
-        X.setBounds(150,80,50,50);
-        O.setBounds(250,80,50,50);
-        D.setBounds(350,80,50,50);
+        // X,O,D,Scores Labels
+        Score.setBounds(220, 70, 70, 40);
+        X.setBounds(150, 100, 50, 50);
+        O.setBounds(250, 100, 50, 50);
+        D.setBounds(350, 100, 50, 50);
         Font labFont = new Font("Comic Sans MS", Font.BOLD, 20);
+        Score.setFont(labFont);
         X.setFont(labFont);
         D.setFont(labFont);
         O.setFont(labFont);
         oneplay.add(X);
         oneplay.add(D);
         oneplay.add(O);
+        oneplay.add(Score);
+        // next round and exit button
+        nextRound.setBounds(110, 510, 140, 50);
+        Exit.setBounds(340, 510, 100, 50);
+        nextRound.setFont(f);
+        Exit.setFont(f);
+        nextRound.setBackground(Color.MAGENTA);
+        Exit.setBackground(Color.MAGENTA);
+        oneplay.add(nextRound);
+        oneplay.add(Exit);
 
         // Two Player Screen
         twoplay.setLayout(null);
         // back button
         back4.setBounds(20, 20, 50, 30);
+        back4.setFont(l);
         twoplay.add(back4);
         // title
         nam.setBounds(180, 20, 250, 30);
@@ -214,16 +271,28 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
         MyCanvas c2 = new MyCanvas();
         c2.setBounds(100, 150, 350, 350);
         twoplay.add(c2);
-        // X,O,D Labels
-        x.setBounds(150,80,50,50);
-        o.setBounds(250,80,50,50);
-        dd.setBounds(350,80,50,50);
+        // X,O,D,Scores Labels
+        score.setBounds(220, 70, 70, 40);
+        x.setBounds(150, 100, 50, 50);
+        o.setBounds(250, 100, 50, 50);
+        dd.setBounds(350, 100, 50, 50);
+        score.setFont(labFont);
         x.setFont(labFont);
         dd.setFont(labFont);
         o.setFont(labFont);
         twoplay.add(x);
         twoplay.add(dd);
         twoplay.add(o);
+        twoplay.add(score);
+        // next round and exit button
+        nextround.setBounds(110, 510, 140, 50);
+        exitbutton.setBounds(340, 510, 100, 50);
+        nextround.setFont(f);
+        exitbutton.setFont(f);
+        nextround.setBackground(Color.MAGENTA);
+        exitbutton.setBackground(Color.MAGENTA);
+        twoplay.add(nextround);
+        twoplay.add(exitbutton);
 
         // Adding Cards to the deck
         card.add("Welcome Screen", welcomPanel);
@@ -241,6 +310,12 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
         back2.addActionListener(this);
         back3.addActionListener(this);
         back4.addActionListener(this);
+        yes.addActionListener(this);
+        no.addActionListener(this);
+        nextRound.addActionListener(this);
+        nextround.addActionListener(this);
+        exitbutton.addActionListener(this);
+        Exit.addActionListener(this);
 
     }
 

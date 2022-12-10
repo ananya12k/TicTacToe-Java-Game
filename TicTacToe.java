@@ -5,7 +5,9 @@ import javax.swing.*;
 public class TicTacToe extends JFrame implements ActionListener, MouseListener {
     // CardLayout instance
     CardLayout cardLayout = new CardLayout(20, 20);
-
+    // X and Y coordinates and num
+    int x_cor1, y_cor1, x_cor2, y_cor2;
+    int xcor, ycor, num = 0;
     // Setting font
     Font f = new Font("Comic Sans MS", Font.BOLD, 20);
 
@@ -39,6 +41,9 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
     Label Score = new Label("Scores");
     Button nextRound = new Button("Next Round");
     Button Exit = new Button("Exit");
+    MyCanvas c1 = new MyCanvas();
+
+
 
     // Two Player Panel
     Panel twoplay = new Panel();
@@ -50,6 +55,8 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
     Label score = new Label("Scores");
     Button nextround = new Button("Next Round");
     Button exitbutton = new Button("Exit");
+    MyCanvas c2 = new MyCanvas();
+
 
     // Exiting Dialog
     Dialog exitdDialog = new Dialog(this, "Leave Game", true);
@@ -60,6 +67,25 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
 
     // Card Layout Container
     Container card = getContentPane();
+
+    // Canvas Class for the tic tac toe square
+    class MyCanvas extends Canvas {
+        MyCanvas() {
+            setBackground(Color.decode("#E9FFDB"));
+            repaint();
+        }
+
+        public void paint(Graphics g) {
+            super.paint(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setStroke(new BasicStroke(4.0F));
+            g2d.setColor(Color.DARK_GRAY);
+            g.drawLine(115, 10, 115, 340);
+            g.drawLine(240, 10, 240, 340);
+            g.drawLine(10, 115, 340, 115);
+            g.drawLine(10, 235, 340, 235);
+        }
+    }
 
     public void actionPerformed(ActionEvent a) {
         if (a.getSource() == play) {
@@ -95,44 +121,10 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
         }
     }
 
-    public void mouseReleased(MouseEvent m) {
-    }
-
-    public void mouseClicked(MouseEvent m) {
-    }
-
-    public void mouseEntered(MouseEvent m) {
-    }
-
-    public void mouseExited(MouseEvent m) {
-    }
-
-    public void mousePressed(MouseEvent m) {
-    }
-
     TicTacToe() {
         setVisible(true);
         setSize(600, 650);
         add(welcomPanel);// adding home panel
-
-        // Canvas Class for the tic tac toe square
-        class MyCanvas extends Canvas {
-            MyCanvas() {
-                setBackground(Color.decode("#E9FFDB"));
-                repaint();
-            }
-
-            public void paint(Graphics g) {
-                super.paint(g);
-                Graphics2D g2d = (Graphics2D) g;
-                g2d.setStroke(new BasicStroke(4.0F));
-                g2d.setColor(Color.DARK_GRAY);
-                g.drawLine(115, 10, 115, 340);
-                g.drawLine(240, 10, 240, 340);
-                g.drawLine(10, 115, 340, 115);
-                g.drawLine(10, 235, 340, 235);
-            }
-        }
 
         // Home Screen
         welcomPanel.setBackground(Color.ORANGE);
@@ -227,7 +219,6 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
         // panel background
         oneplay.setBackground(Color.ORANGE);
         // Canvas
-        MyCanvas c1 = new MyCanvas();
         c1.setBounds(100, 150, 350, 350);
         oneplay.add(c1);
         // X,O,D,Scores Labels
@@ -268,7 +259,6 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
         // panel background
         twoplay.setBackground(Color.ORANGE);
         // Canvas
-        MyCanvas c2 = new MyCanvas();
         c2.setBounds(100, 150, 350, 350);
         twoplay.add(c2);
         // X,O,D,Scores Labels
@@ -317,6 +307,43 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
         exitbutton.addActionListener(this);
         Exit.addActionListener(this);
 
+    }
+
+    public void mouseReleased(MouseEvent m) {
+    }
+
+    public void mouseClicked(MouseEvent m) {
+        xcor = m.getX();
+        ycor = m.getY();
+        if ((xcor >= 0 && xcor <= 115) && (ycor >= 0 && ycor <= 115)) {
+            num = 1;
+        } else if ((xcor >= 115 && xcor <= 240) && (ycor >= 0 && ycor <= 115)) {
+            num = 2;
+        } else if ((xcor >= 240 && xcor <= 350) && (ycor >= 0 && ycor <= 115)) {
+            num = 3;
+        }
+        // else if ((xcor >= 0 && xcor <= 115) && (ycor >= 0 && ycor <= 115)) {
+        // num = 4;
+        // } else if ((xcor >= 0 && xcor <= 115) && (ycor >= 0 && ycor <= 115)) {
+        // num = 5;
+        // } else if ((xcor >= 0 && xcor <= 115) && (ycor >= 0 && ycor <= 115)) {
+        // num = 6;
+        // } else if ((xcor >= 0 && xcor <= 115) && (ycor >= 0 && ycor <= 115)) {
+        // num = 7;
+        // } else if ((xcor >= 0 && xcor <= 115) && (ycor >= 0 && ycor <= 115)) {
+        // num = 8;
+        // } else if ((xcor >= 0 && xcor <= 115) && (ycor >= 0 && ycor <= 115)) {
+        // num = 9;
+        // }
+    }
+
+    public void mouseEntered(MouseEvent m) {
+    }
+
+    public void mouseExited(MouseEvent m) {
+    }
+
+    public void mousePressed(MouseEvent m) {
     }
 
     public static void main(String[] args) {

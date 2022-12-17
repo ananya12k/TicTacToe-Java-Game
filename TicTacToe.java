@@ -7,7 +7,7 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
     CardLayout cardLayout = new CardLayout(20, 20);
     // X and Y coordinates and num
     int x_cor1, y_cor1, x_cor2, y_cor2;
-    int xcor, ycor, num = 0;
+    int xcor, ycor, num ;
     // Setting font
     Font f = new Font("Comic Sans MS", Font.BOLD, 20);
 
@@ -72,7 +72,6 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
     class MyCanvas extends Canvas {
         MyCanvas() {
             setBackground(Color.decode("#E9FFDB"));
-            repaint();
         }
 
         public void paint(Graphics g) {
@@ -84,6 +83,14 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
             g.drawLine(240, 10, 240, 340);
             g.drawLine(10, 115, 340, 115);
             g.drawLine(10, 235, 340, 235);
+            if (num==1) {
+                g.drawOval(72, 72, 15, 15);
+            }
+        }
+        public void setnum(int n)
+        {
+            num=n;
+            repaint();
         }
     }
 
@@ -220,6 +227,7 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
         oneplay.setBackground(Color.ORANGE);
         // Canvas
         c1.setBounds(100, 150, 350, 350);
+        c1.repaint();
         oneplay.add(c1);
         // X,O,D,Scores Labels
         Score.setBounds(220, 70, 70, 40);
@@ -260,6 +268,7 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
         twoplay.setBackground(Color.ORANGE);
         // Canvas
         c2.setBounds(100, 150, 350, 350);
+        c2.repaint();
         twoplay.add(c2);
         // X,O,D,Scores Labels
         score.setBounds(220, 70, 70, 40);
@@ -315,8 +324,10 @@ public class TicTacToe extends JFrame implements ActionListener, MouseListener {
     public void mouseClicked(MouseEvent m) {
         xcor = m.getX();
         ycor = m.getY();
-        if ((xcor >= 0 && xcor <= 115) && (ycor >= 0 && ycor <= 115)) {
+        if ((xcor >= 10 && xcor <= 115) || (ycor >= 10 && ycor <= 115)) {
             num = 1;
+            c1.setnum(num);
+            c2.setnum(num);
         } else if ((xcor >= 115 && xcor <= 240) && (ycor >= 0 && ycor <= 115)) {
             num = 2;
         } else if ((xcor >= 240 && xcor <= 350) && (ycor >= 0 && ycor <= 115)) {
